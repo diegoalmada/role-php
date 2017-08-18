@@ -1,0 +1,13 @@
+---
+server:
+    timezone: "America/Sao_Paulo"
+
+php:
+    packages:
+        - "cli"
+        - "intl"
+        - "mongodb"
+        - "mcrypt"
+
+php_version: 7.0
+php_config_prefix: "/etc/php/{{php_version}}"

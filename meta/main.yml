@@ -1,0 +1,13 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: Diego Almada
+  description: An Ansible PHP Role
+  min_ansible_version: 1.9
+  platforms:
+  - name: Ubuntu
+    version:
+    - trusty
+  categories:
+    - web
