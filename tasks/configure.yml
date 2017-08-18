@@ -1,8 +1,8 @@
 ---
-- stat: path="php{{ php.config_prefix }}/fpm/php.ini"
+- stat: path="{{ php.config_prefix }}/fpm/php.ini"
   register: phpfpm
 
-- stat: path="php{{ php.config_prefix }}/cli/php.ini"
+- stat: path="{{ php.config_prefix }}/cli/php.ini"
   register: phpcli
 
 - name: Copy CLI's PHP.ini to cli path 
