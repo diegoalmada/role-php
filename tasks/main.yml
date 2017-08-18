@@ -9,15 +9,15 @@
 
 - name: Install php
   become: yes
-  apt: pkg="php{{ php_version }}" state=latest
+  apt: pkg="php{{ php.version }}" state=latest
 
 - name: Install php-fpm
   become: yes
-  apt: pkg="php{{ php_version }}-fpm" state=latest
+  apt: pkg="php{{ php.version }}-fpm" state=latest
 
 - name: Install PHP Packages
   become: yes
-  apt: pkg=php{{ php_version }}-{{ item }} state=latest
+  apt: pkg=php{{ php.version }}-{{ item }} state=latest
   with_items: "{{ php.packages }}"
   when: php.packages is defined
 

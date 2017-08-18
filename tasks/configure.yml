@@ -1,9 +1,23 @@
 ---
-- stat: path="{{ php_config_prefix }}/fpm/php.ini"
+- stat: path="php{{ php.config_prefix }}/fpm/php.ini"
   register: phpfpm
 
-- stat: path="{{ php_config_prefix }}/cli/php.ini"
+- stat: path="php{{ php.config_prefix }}/cli/php.ini"
   register: phpcli
+
+- name: Copy CLI's PHP.ini to cli path 
+  template:
+    src=php-cli.ini.tpl
+    dest={{ php.config_prefix }}/cli/php.ini
+    owner=root group=root mode=0755
+
+- name: Copy FPM's PHP.ini to fpm path 
+  template:
+    src=php-fpm.ini.tpl
+    dest={{ php.config_prefix }}/fpm/php.ini
+    owner=root group=root mode=0755
+  notify:
+    - restart php-fpm
 
 - include: php-fpm.yml
   register: phpfpm.stat.exists

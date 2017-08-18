@@ -1,13 +1,11 @@
 ---
-server:
-    timezone: "America/Sao_Paulo"
 
 php:
-    packages:
-        - "cli"
-        - "intl"
-        - "mongodb"
-        - "mcrypt"
-
-php_version: 7.0
-php_config_prefix: "/etc/php/{{php_version}}"
+    version: 7.0
+    packages: []
+    config_prefix: "/etc/php/{{ php.version }}"
+    expose: 0
+    opcache_enable: 1
+    upload_max_filesize: "100M"
+    post_max_size: "100M",
+    memory_limit: "512M"

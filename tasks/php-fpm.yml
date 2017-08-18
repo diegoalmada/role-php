@@ -1,16 +1,31 @@
 ---
 
-- name: Set timezone in fpm php.ini
-  lineinfile: dest="{{ php_config_prefix }}/fpm/php.ini"
+- name: Configuring timezone
+  lineinfile: dest="{{ php.config_prefix }}/fpm/php.ini"
               regexp='date.timezone ='
-              line='date.timezone = {{ server.timezone }}'
+              line='date.timezone = {{ php.timezone }}'
 
-- name: Enable opcache
-  lineinfile: dest="{{ php_config_prefix }}/fpm/php.ini"
+- name: Configuring Opcache
+  lineinfile: dest="{{ php.config_prefix }}/fpm/php.ini"
               regexp=';?opcache.enable=\d'
-              line='opcache.enable=1'
+              line='opcache.enable={{ php.opcache_enable }}'
 
-- name: Disable expose_php
-  lineinfile: dest="{{ php_config_prefix }}/fpm/php.ini"
+- name: Configuring PHP Expose
+  lineinfile: dest="{{ php.config_prefix }}/fpm/php.ini"
               regexp=';?expose_php=\d'
-              line='expose_php=0'
+              line='expose_php={{ php.expose }}'
+
+- name: Configuring Post Max Size
+  lineinfile: dest="{{ php.config_prefix }}/fpm/php.ini"
+              regexp=';?post_max_size=\d'
+              line='post_max_size={{ php.post_max_size }}'
+
+- name: Configuring Upload Max Filesize
+  lineinfile: dest="{{ php.config_prefix }}/fpm/php.ini"
+              regexp=';?upload_max_filesize=\d'
+              line='upload_max_filesize={{ php.upload_max_filesize }}'
+
+- name: Configuring Memory limit
+  lineinfile: dest="{{ php.config_prefix }}/fpm/php.ini"
+              regexp=';?memory_limit=\d'
+              line='memory_limit={{ php.memory_limit }}'
